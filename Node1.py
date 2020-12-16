@@ -28,8 +28,7 @@ def scanCallBack(msg):
 
 # TIMER - Control Loop ----------------------------------------------
 def timerCallBack(event):
-    global estado
-    msg = String()
+    global estado, msgp
     
     if center > 0.5 and estado < 5:
         vel.linear.x = 0.1
@@ -52,15 +51,15 @@ def timerCallBack(event):
     if estado == 5:
         print('PARADO - Estado = ')
         print (estado)
-        msg.data = 'parado'
-        pub.publish(msg)
+        msgp = 1
+        pub.publish(msgp)
     
     pub.publish(vel)
     
 # -------------------------------------------------------------------
 
 pub = rospy.Publisher('/robot_1/cmd_vel', Twist, queue_size=1)
-pub = rospy.Publisher('/topic1', String, queue_size=1)
+pub = rospy.Publisher('/topic1', int, queue_size=1)
 odom_sub = rospy.Subscriber('/robot_1/odom', Odometry, odomCallBack)
 scan_sub = rospy.Subscriber('/robot_1/scan', LaserScan, scanCallBack)
 
