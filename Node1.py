@@ -43,7 +43,7 @@ def timerCallBack(event):
     
     else: 
         if center < 0.5:
-            while left > 0.5:
+            while left > 0.5 or left == 'inf':
                 vel.linear.x = 0
                 vel.angular.z = 0.1
         
