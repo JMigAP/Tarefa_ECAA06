@@ -64,7 +64,7 @@ def timerCallBack(event):
     
 # -------------------------------------------------------------------
 
-pub = rospy.Publisher('/robot_1/cmd_vel', Twist, queue_size=10)
+pub = rospy.Publisher('/robot1/cmd_vel', Twist, queue_size=10)
 odom_sub = rospy.Subscriber('/robot1/odom', Odometry, odomCallBack)
 scan_sub = rospy.Subscriber('/robot1/scan', LaserScan, scanCallBack)
 
