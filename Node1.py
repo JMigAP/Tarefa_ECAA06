@@ -28,7 +28,7 @@ def scanCallBack(msg):
 
 # TIMER - Control Loop ----------------------------------------------
 def timerCallBack(event):
-    global estado, msgp
+    global estado, msgp, center, right, left
     
     if center > 0.5 and estado < 5:
         vel.linear.x = 0.1
