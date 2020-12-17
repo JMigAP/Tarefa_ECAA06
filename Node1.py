@@ -52,14 +52,14 @@ def timerCallBack(event):
         print('PARADO (2) - Estado = ')
         print (estado)
         msgp = 1
-        pub.publish(msgp)
+        #pub.publish(msgp)
     
     pub.publish(vel)
     
 # -------------------------------------------------------------------
 
 pub = rospy.Publisher('/robot_1/cmd_vel', Twist, queue_size=1)
-pub = rospy.Publisher('/topic1', int, queue_size=1)
+#pub = rospy.Publisher('/topic1', int, queue_size=1)
 odom_sub = rospy.Subscriber('/robot_1/odom', Odometry, odomCallBack)
 scan_sub = rospy.Subscriber('/robot_1/scan', LaserScan, scanCallBack)
 
