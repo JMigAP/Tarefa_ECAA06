@@ -13,6 +13,7 @@ rospy.init_node('cmd_node1')
 
 global estado, center, right, left
 estado = 0 
+center = 0.9
 
 # CALLBACKS ---------------------------------------------------------
 def odomCallBack(msg):
