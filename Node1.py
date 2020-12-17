@@ -11,7 +11,7 @@ vel = Twist()
 
 rospy.init_node('cmd_node1')
 
-estado = 0 
+estado = 0
 center = 1
 left = 1
 right = 1
@@ -30,7 +30,8 @@ def scanCallBack(msg):
     
 # TIMER - Control Loop ----------------------------------------------
 def timerCallBack(event):
-    global center, right, left, estado
+    global center, right, left
+    global estado
     
     print (center)
     if center > 0.5 and estado < 5:
