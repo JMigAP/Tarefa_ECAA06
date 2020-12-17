@@ -20,17 +20,17 @@ def odomCallBack(msg):
     odom = msg
     
 def scanCallBack(msg):
-    global center, right, left
     right = min(msg.ranges[50:70])
     center = min(msg.ranges[170:190])
     left = min(msg.ranges[290:310])
-    print(center, right, left)
+    #print(right, center, left)
     
 # TIMER - Control Loop ----------------------------------------------
 def timerCallBack(event):
-    global estado, msgp, center, right, left
-    
+    print (center)
     if center > 0.5 and estado < 5:
+        print (center)
+        print ('--')
         vel.linear.x = 0.1
         vel.angular.z = 0
         #estado = estado + 1
