@@ -31,6 +31,8 @@ def scanCallBack(msg):
 def timerCallBack(event):
     global estado, msgp, center, right, left
     
+    print ('centro = ')
+    print (center)
     if center > 0.5 and estado < 5:
         vel.linear.x = 0.1
         vel.angular.z = 0
