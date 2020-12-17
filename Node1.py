@@ -11,7 +11,7 @@ vel = Twist()
 
 rospy.init_node('cmd_node1')
 
-global estado
+global estado, center, right, left
 estado = 0 
 
 # CALLBACKS ---------------------------------------------------------
