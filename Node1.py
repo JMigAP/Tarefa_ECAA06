@@ -48,6 +48,8 @@ def timerCallBack(event):
                 vel.angular.z = -0.1
                 pub.publish(vel)
                 scan_sub = rospy.Subscriber('/robot1/scan', LaserScan, scanCallBack)
+                print (right,center,left)
+                print ('--')
 
             estado = estado + 1
     
