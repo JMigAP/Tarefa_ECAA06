@@ -11,8 +11,8 @@ vel = Twist()
 
 rospy.init_node('cmd_node1')
 
-global estado, center, right, left
 estado = 0 
+center = 1
 
 # CALLBACKS ---------------------------------------------------------
 def odomCallBack(msg):
@@ -20,6 +20,7 @@ def odomCallBack(msg):
     odom = msg
     
 def scanCallBack(msg):
+    global center, left, right
     right = min(msg.ranges[50:70])
     center = min(msg.ranges[170:190])
     left = min(msg.ranges[290:310])
