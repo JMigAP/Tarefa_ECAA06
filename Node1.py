@@ -13,6 +13,8 @@ rospy.init_node('cmd_node1')
 
 estado = 0 
 center = 1
+left = 1
+right = 1
 
 # CALLBACKS ---------------------------------------------------------
 def odomCallBack(msg):
@@ -28,6 +30,8 @@ def scanCallBack(msg):
     
 # TIMER - Control Loop ----------------------------------------------
 def timerCallBack(event):
+    global center, right, left, estado
+    
     print (center)
     if center > 0.5 and estado < 5:
         print (center)
