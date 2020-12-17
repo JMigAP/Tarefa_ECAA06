@@ -72,15 +72,6 @@ def timerCallBack(event):
         estado = estado + 1
         pub.publish(vel)
     
-    print('Estado (1) = ')
-    print (estado)            
-    
-    if estado == 5:
-        print('PARADO (2) - Estado = ')
-        print (estado)
-        msgp = 1
-        
-    
     pub.publish(vel)
     
 # -------------------------------------------------------------------
