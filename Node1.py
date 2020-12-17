@@ -34,24 +34,43 @@ def timerCallBack(event):
     global estado
     
     print (center)
-    if center > 0.5 and estado < 5:
+    
+    if center > 0.5 and estado == 0:
         print (right,center,left)
-        print ('--')
+        print (estado)
         vel.linear.x = -0.1
         vel.angular.z = 0
-        #estado = estado + 1
+        estado = estado + 1
     
-    else: 
-        if center < 0.5:
-            while left > 0.58 and center < 0.5:
-                vel.linear.x = 0
-                vel.angular.z = -0.1
-                pub.publish(vel)
-                scan_sub = rospy.Subscriber('/robot1/scan', LaserScan, scanCallBack)
-                print (right,center,left)
-                print ('--')
-
-            estado = estado + 1
+    if center < 0.5 and estado == 1:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0
+        vel.angular.z = -0.1
+        estado = estado + 1
+    
+    if left < 0.58 and estado == 2:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = -0.1
+        vel.angular.z = 0
+        estado = estado + 1
+    
+    if center < 0.5 and estado == 3:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0
+        vel.angular.z = -0.2
+        estado = estado + 1
+        pub.publish(vel)
+    
+    if left < 0.58 and estado == 4:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0.1
+        vel.angular.z = 0
+        estado = estado + 1
+        pub.publish(vel)
     
     print('Estado (1) = ')
     print (estado)            
