@@ -20,14 +20,13 @@ def odomCallBack(msg):
     global odom
     odom = msg
     
-def scanCallBack(scan):
+def scanCallBack(scane):
     global center, right, left
-    center = min(scan.ranges[450:630])
-    right = min(scan.ranges[200:280])
-    left = min(scan.ranges[800:880])
+    center = min(scane.ranges[450:630])
+    right = min(scane.ranges[200:280])
+    left = min(scane.ranges[800:880])
     print(center, right, left)
-    print(coco)
-
+    
 # TIMER - Control Loop ----------------------------------------------
 def timerCallBack(event):
     global estado, msgp, center, right, left
@@ -63,8 +62,8 @@ def timerCallBack(event):
 # -------------------------------------------------------------------
 
 pub = rospy.Publisher('/robot_1/cmd_vel', Twist, queue_size=10)
-odom_sub = rospy.Subscriber('/robot_1/odom', Odometry, odomCallBack)
-scan_sub = rospy.Subscriber('/robot_1/scan', LaserScan, scanCallBack)
+odom_sub = rospy.Subscriber('/robot1/odom', Odometry, odomCallBack)
+scan_sub = rospy.Subscriber('/robot1/scan', LaserScan, scanCallBack)
 
 timer = rospy.Timer(rospy.Duration(0.05), timerCallBack)
 
