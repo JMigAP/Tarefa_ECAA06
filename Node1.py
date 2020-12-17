@@ -20,11 +20,11 @@ def odomCallBack(msg):
     global odom
     odom = msg
     
-def scanCallBack(scane):
+def scanCallBack(scan):
     global center, right, left
-    center = min(scane.ranges[450:630])
-    right = min(scane.ranges[200:280])
-    left = min(scane.ranges[800:880])
+    center = min(scan.ranges[450:630])
+    right = min(scan.ranges[200:280])
+    left = min(scan.ranges[800:880])
     print(center, right, left)
     
 # TIMER - Control Loop ----------------------------------------------
