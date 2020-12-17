@@ -41,15 +41,14 @@ def timerCallBack(event):
         vel.angular.z = 0
         #estado = estado + 1
         
-        if center < 0.5:
+     else if center < 0.5:
+        while left > 0.5:
             vel.linear.x = 0
             vel.angular.z = 0.1
-            #estado = estado + 1
-            
-            if right < 0.5 or left < 0.5:
-                vel.angular.z = 0
-                vel.linear.x = 0
-                estado = estado + 1
+        
+        vel.angular.z = 0
+        vel.linear.x = 0
+        estado = estado + 1
     
     print('Estado (1) = ')
     print (estado)            
