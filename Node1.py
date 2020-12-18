@@ -84,7 +84,7 @@ def timerCallBack(event):
     if center > 1 and estado == 7:
         estado = estado + 1
     
-    if left < 0.58 and estado == 8:
+    if left < 0.59 and estado == 8:
         print (right,center,left)
         print (estado)
         vel.linear.x = -0.1
@@ -102,7 +102,7 @@ def timerCallBack(event):
     if center > 1 and estado == 10:
         estado = estado + 1
     
-    if left < 0.58 and estado == 11:
+    if left < 0.59and estado == 11:
         print (right,center,left)
         print (estado)
         vel.linear.x = -0.1
@@ -121,7 +121,7 @@ def timerCallBack(event):
     if center > 1 and estado == 13:
         estado = estado + 1
     
-    if left < 0.58 and estado == 14:
+    if left < 0.59 and estado == 14:
         print (right,center,left)
         print (estado)
         vel.linear.x = -0.1
