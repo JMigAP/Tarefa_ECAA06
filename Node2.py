@@ -17,10 +17,7 @@ estado = 0
 center = 1
 left = 1
 right = 1
-st = 'inicial'
 
-vel.linear.x = 0
-vel.angular.z = 0
 
 # CALLBACKS ---------------------------------------------------------
 def odomCallBack(msg):
@@ -149,6 +146,10 @@ def timerCallBack(event):
     if st != 'Parado':
         print ('Esperando')
         print (st)
+        
+        vel.linear.x = 0
+        vel.angular.z = 0
+        pub.publish(vel)
 
 # -------------------------------------------------------------------
 
