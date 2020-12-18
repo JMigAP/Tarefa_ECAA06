@@ -152,7 +152,7 @@ def timerCallBack(event):
         vel.angular.z = 0
         pub.publish(vel)
 
-# -------------------------------------------------------------------
+# ------------------------------------------------------------
 
 pub = rospy.Publisher('/robot2/cmd_vel', Twist, queue_size=10)
 ndois_sub = rospy.Subscriber('/topic1', String, topCallBack)
