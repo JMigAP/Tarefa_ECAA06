@@ -2,18 +2,22 @@ import rospy
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import LaserScan
+from std_msgs.msg import String
 import tf
 import math
 
 odom = Odometry()
 scan = LaserScan()
 vel = Twist()
+msgs = String()
 
-rospy.init_node('cmd_node1')
+rospy.init_node('cmd_node2')
 
-global estado, mat
-estado = 0 
-mat = 0
+estado = 0
+center = 1
+left = 1
+right = 1
+st = 'inicial'
 
 # CALLBACKS ---------------------------------------------------------
 def odomCallBack(msg):
@@ -21,51 +25,130 @@ def odomCallBack(msg):
     odom = msg
     
 def scanCallBack(msg):
-    global center, right, left
-    center = min(msg.ranges[450:630])
-    right = min(msg.ranges[200:280])
-    left = min(msg.ranges[800:880])
-    print(center, right, left)
-
-def topCallBack(msgp):
-    global mat
-    mat = msgp
-
+    global center, left, right
+    right = min(msg.ranges[50:70])
+    center = min(msg.ranges[170:190])
+    left = min(msg.ranges[290:310])
+    #print(right, center, left)
+    
+def topCallBack(msgs):
+    global st
+    st = msgs.data
+    
 # TIMER - Control Loop ----------------------------------------------
 def timerCallBack(event):
-    global estado, msgp
+    global center, right, left
+    global estado
+    global st
     
-    if center > 0.5 and estado < 5 and mat == 1:
-        vel.linear.x = 0.1
-        vel.angular.z = 0
-        #estado = estado + 1
-        
-        if center < 0.5:
-            vel.linear.x = 0
-            vel.angular.z = 0.1
-            #estado = estado + 1
-            
-            if right < 0.5 or left < 0.5:
-                vel.angular.z = 0
-                vel.linear.x = 0
-                estado = estado + 1
+    print (right,center,left,st)
     
-    print('Estado (2) = ')
-    print (estado)            
-    
-    if estado == 5:
-        print('PARADO 2 - Estado = ')
+    if center > 0.5 and estado == 0:
+        print (right,center,left)
         print (estado)
-
+        vel.linear.x = -0.1
+        vel.angular.z = 0
+        estado = estado + 1
+    
+    if center < 0.5 and estado == 1:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0
+        vel.angular.z = -0.1
+        estado = estado + 1
+    
+    if left < 0.59 and estado == 2:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = -0.1
+        vel.angular.z = 0
+        estado = estado + 1
+    
+    if center < 0.5 and estado == 3:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0
+        vel.angular.z = -0.1
+        estado = estado + 1
+        
+    if center > 1 and estado == 4:
+        estado = estado + 1
+    
+    if left < 0.59 and estado == 5:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = -0.1
+        vel.angular.z = 0
+        estado = estado + 1
+        pub.publish(vel)
+    
+    if center < 0.5 and estado == 6:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0
+        vel.angular.z = -0.1
+        estado = estado + 1
+        
+    if center > 1 and estado == 7:
+        estado = estado + 1
+    
+    if left < 0.59 and estado == 8:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = -0.1
+        vel.angular.z = 0
+        estado = estado + 1
+        pub.publish(vel)
+    
+    if center < 0.5 and estado == 9:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0
+        vel.angular.z = -0.1
+        estado = estado + 1
+        
+    if center > 1 and estado == 10:
+        estado = estado + 1
+    
+    if left < 0.59and estado == 11:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = -0.1
+        vel.angular.z = 0
+        estado = estado + 1
+        pub.publish(vel)
     pub.publish(vel)
     
+    if center < 0.5 and estado == 12:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0
+        vel.angular.z = -0.1
+        estado = estado + 1
+        
+    if center > 1 and estado == 13:
+        estado = estado + 1
+    
+    if left < 0.59 and estado == 14:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = -0.1
+        vel.angular.z = 0
+        estado = estado + 1
+        pub.publish(vel)
+
+    if center < 0.5 and estado == 15:
+        print ('Parado')
+        vel.linear.x = 0
+        vel.angular.z = 0
+
     
 # -------------------------------------------------------------------
 
-pub = rospy.Publisher('/robot_2/cmd_vel', Twist, queue_size=1)
-sub = rospy.Subscriber('/topic1', int, topCallBack)
-odom_sub = rospy.Subscriber('/robot_2/odom', Odometry, odomCallBack)
-scan_sub = rospy.Subscriber('/robot_2/scan', LaserScan, scanCallBack)
+pub = rospy.Publisher('/robot2/cmd_vel', Twist, queue_size=10)
+#ndois_sub = rospy.Subscriber('/topic1', String, topCallBack)
+odom_sub = rospy.Subscriber('/robot2/odom', Odometry, odomCallBack)
+scan_sub = rospy.Subscriber('/robot2/scan', LaserScan, scanCallBack)
 
 timer = rospy.Timer(rospy.Duration(0.05), timerCallBack)
 
