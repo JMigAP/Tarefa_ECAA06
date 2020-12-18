@@ -138,8 +138,13 @@ def timerCallBack(event):
         vel.angular.z = 0
         msgp.data = 'Parado'
         pub_ndois.publish(msgp)
+        estado = estado + 1
     
-    if estado != 15:
+    if estado == 16:
+        msgp.data = 'Parado'
+        pub_ndois.publish(msgp)
+    
+    if estado != 16 and estado != 15:
         msgp.data = 'Funcionando'
         pub_ndois.publish(msgp)
 # -------------------------------------------------------------------
