@@ -57,7 +57,7 @@ def timerCallBack(event):
         vel.angular.z = 0.1
         estado = estado + 1
     
-    if right < 0.59 and estado == 2:
+    if right < 0.46 and estado == 2:
         print (right,center,left)
         print (estado)
         vel.linear.x = -0.1
@@ -74,7 +74,7 @@ def timerCallBack(event):
     if center > 1 and estado == 4:
         estado = estado + 1
     
-    if right < 0.59 and estado == 5:
+    if right < 0.46 and estado == 5:
         print (right,center,left)
         print (estado)
         vel.linear.x = -0.1
@@ -92,7 +92,7 @@ def timerCallBack(event):
     if center > 1 and estado == 7:
         estado = estado + 1
     
-    if right < 0.59 and estado == 8:
+    if right < 0.46 and estado == 8:
         print (right,center,left)
         print (estado)
         vel.linear.x = -0.1
@@ -110,7 +110,7 @@ def timerCallBack(event):
     if center > 1 and estado == 10:
         estado = estado + 1
     
-    if right < 0.59and estado == 11:
+    if right < 0.46 and estado == 11:
         print (right,center,left)
         print (estado)
         vel.linear.x = -0.1
