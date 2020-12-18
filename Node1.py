@@ -74,7 +74,65 @@ def timerCallBack(event):
         estado = estado + 1
         pub.publish(vel)
     
+    if center < 0.5 and estado == 6:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0
+        vel.angular.z = -0.1
+        estado = estado + 1
+        
+    if center > 0.6 and estado == 7:
+        estado = estado + 1
+    
+    if left < 0.58 and estado == 8:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = -0.1
+        vel.angular.z = 0
+        estado = estado + 1
+        pub.publish(vel)
+    
+    if center < 0.5 and estado == 9:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0
+        vel.angular.z = -0.1
+        estado = estado + 1
+        
+    if center > 0.6 and estado == 10:
+        estado = estado + 1
+    
+    if left < 0.58 and estado == 11:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = -0.1
+        vel.angular.z = 0
+        estado = estado + 1
+        pub.publish(vel)
     pub.publish(vel)
+    
+    if center < 0.5 and estado == 12:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = 0
+        vel.angular.z = -0.1
+        estado = estado + 1
+        
+    if center > 0.6 and estado == 13:
+        estado = estado + 1
+    
+    if left < 0.58 and estado == 14:
+        print (right,center,left)
+        print (estado)
+        vel.linear.x = -0.1
+        vel.angular.z = 0
+        estado = estado + 1
+        pub.publish(vel)
+
+    if center < 0.5 and estado == 15:
+        print ('Parado')
+        vel.linear.x = 0
+        vel.angular.z = 0
     
 # -------------------------------------------------------------------
 
