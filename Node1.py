@@ -2,12 +2,14 @@ import rospy
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import LaserScan
+from std_msgs.msg import String
 import tf
 import math
 
 odom = Odometry()
 scan = LaserScan()
 vel = Twist()
+msgp = String()
 
 rospy.init_node('cmd_node1')
 
@@ -32,6 +34,7 @@ def scanCallBack(msg):
 def timerCallBack(event):
     global center, right, left
     global estado
+    global msgp
     
     print (right,center,left)
     
@@ -133,10 +136,16 @@ def timerCallBack(event):
         print ('Parado')
         vel.linear.x = 0
         vel.angular.z = 0
+        msgp.data = 'Parado'
+        pub_ndois.publish(msgp)
     
+    if estado != 15:
+        msgp.data = 'Rodando'
+        pub_ndois.publish(msgp)
 # -------------------------------------------------------------------
 
 pub = rospy.Publisher('/robot1/cmd_vel', Twist, queue_size=10)
+pub_ndois = rospy.Publisher('/topic1', String, queue_size=1)
 odom_sub = rospy.Subscriber('/robot1/odom', Odometry, odomCallBack)
 scan_sub = rospy.Subscriber('/robot1/scan', LaserScan, scanCallBack)
 
