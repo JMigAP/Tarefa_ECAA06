@@ -140,7 +140,7 @@ def timerCallBack(event):
         pub_ndois.publish(msgp)
     
     if estado != 15:
-        msgp.data = 'Rodando'
+        msgp.data = 'Funcionando'
         pub_ndois.publish(msgp)
 # -------------------------------------------------------------------
 
